@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Calendar, ChevronDown } from "lucide-react";
 import "./CreateJobForm.css";
+import { fallbackJobs } from "../../App"; // Import fallbackJobs from App.jsx
 
 const CreateJobForm = ({ onClose }) => {
   const [formData, setFormData] = useState({
@@ -38,9 +39,10 @@ const CreateJobForm = ({ onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newJob = {
+    const 
+    newJob = {
       id: Date.now(),
-      logo: `../src/assets/images/${formData.companyName}_logo.png`,
+      logo: `../images/${formData.companyName}_logo.png`,
       company: formData.companyName,
       position: formData.jobTitle,
       experience: formData.experience,
@@ -55,6 +57,7 @@ const CreateJobForm = ({ onClose }) => {
     };
 
     try {
+      // First try to post to the API
       const response = await fetch("http://localhost:5000/api/jobs", {
         method: "POST",
         headers: {
@@ -63,15 +66,26 @@ const CreateJobForm = ({ onClose }) => {
         body: JSON.stringify(newJob),
       });
 
-      if (response.ok) {
-        alert("Job successfully posted");
-        onClose();
-        window.location.reload(); // Reload the page to update the job listings
-      } else {
-        alert("Failed to post job");
+      if (!response.ok) {
+        throw new Error('API request failed');
       }
+
+      // If successful, close the form
+      onClose();
     } catch (error) {
-      console.error("Error:", error);
+      console.log('API request failed, using fallback data:', error);
+      
+      // If API fails, add to fallbackJobs
+      fallbackJobs.push(newJob);
+      
+      // You might want to store the updated fallbackJobs in localStorage
+      // to persist the data between page refreshes
+      localStorage.setItem('fallbackJobs', JSON.stringify(fallbackJobs));
+      
+      // Show success message and reload home page
+      alert("Job posted successfully!");
+      window.location.reload();
+      onClose();
     }
   };
 

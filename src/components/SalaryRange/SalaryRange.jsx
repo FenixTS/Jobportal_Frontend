@@ -44,6 +44,7 @@ const SalaryRange = () => {
         <div className="slider-track" style={getBackground()}></div>
 
         <input
+          
           type="range"
           min="10000"
           max="100000"

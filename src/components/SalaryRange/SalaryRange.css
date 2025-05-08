@@ -46,8 +46,8 @@
   top: 50%;
   right: 20px;
   transform: translateY(-50%);
-  height: 2px;
-  width: 90%;
+  height: 2.5px;
+  width: 86%;
   border-radius: 5px;
   z-index: 1;
 }
@@ -60,6 +60,7 @@
   pointer-events: none;
   -webkit-appearance: none;
   z-index: 2;
+  right: 10px;
 }
 
 .range-thumb::-webkit-slider-thumb {
