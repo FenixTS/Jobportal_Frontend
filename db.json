@@ -1,0 +1,117 @@
+{
+  "jobs": [
+    {
+      "id": "1",
+      "logo": "../src/assets/images/Amazon_logo.png",
+      "company": "Amazon",
+      "position": "Full Stack Developer",
+      "experience": "1-3 yr",
+      "location": "Onsite",
+      "workType": "Onsite",
+      "salary": "12LPA",
+      "description": [
+        "A user-friendly interface lets you browse stunning photos and videos",
+        "Filter destinations based on interests and travel style, and create personalized"
+      ]
+    },
+    {
+      "id": "2",
+      "logo": "../src/assets/images/Tesla_logo.png",
+      "company": "Tesla",
+      "position": "Node Js Developer",
+      "experience": "1-3 yr",
+      "location": "Onsite",
+      "workType": "Onsite",
+      "salary": "12LPA",
+      "description": [
+        "A user-friendly interface lets you browse stunning photos and videos",
+        "Filter destinations based on interests and travel style, and create personalized"
+      ]
+    },
+    {
+      "id": "3",
+      "logo": "../src/assets/images/Swiggy_logo.png",
+      "company": "Swiggy",
+      "position": "UX/UI Designer",
+      "experience": "1-3 yr",
+      "location": "Onsite",
+      "workType": "Onsite",
+      "salary": "12LPA",
+      "description": [
+        "A user-friendly interface lets you browse stunning photos and videos",
+        "Filter destinations based on interests and travel style, and create personalized"
+      ]
+    },
+    {
+      "id": "4",
+      "logo": "../src/assets/images/Amazon_logo.png",
+      "company": "Amazon",
+      "position": "Full Stack Developer",
+      "experience": "1-3 yr",
+      "location": "Onsite",
+      "workType": "Onsite",
+      "salary": "12LPA",
+      "description": [
+        "A user-friendly interface lets you browse stunning photos and videos",
+        "Filter destinations based on interests and travel style, and create personalized"
+      ]
+    },
+    {
+      "id": "5",
+      "logo": "../src/assets/images/Tesla_logo.png",
+      "company": "Tesla",
+      "position": "Node Js Developer",
+      "experience": "1-3 yr",
+      "location": "Onsite",
+      "workType": "Onsite",
+      "salary": "12LPA",
+      "description": [
+        "A user-friendly interface lets you browse stunning photos and videos",
+        "Filter destinations based on interests and travel style, and create personalized"
+      ]
+    },
+    {
+      "id": "6",
+      "logo": "../src/assets/images/Swiggy_logo.png",
+      "company": "Swiggy",
+      "position": "UX/UI Designer",
+      "experience": "1-3 yr",
+      "location": "Onsite",
+      "workType": "Onsite",
+      "salary": "12LPA",
+      "description": [
+        "A user-friendly interface lets you browse stunning photos and videos",
+        "Filter destinations based on interests and travel style, and create personalized"
+      ]
+    },
+    {
+      "id": "7",
+      "logo": "../src/assets/images/Amazon_logo.png",
+      "company": "Amazon",
+      "position": "Full Stack Developer",
+      "experience": "1-3 yr",
+      "location": "Onsite",
+      "workType": "Onsite",
+      "salary": "12LPA",
+      "description": [
+        "A user-friendly interface lets you browse stunning photos and videos",
+        "Filter destinations based on interests and travel style, and create personalized"
+      ]
+    },
+    {
+      "id": "8",
+      "logo": "../src/assets/images/Tesla_logo.png",
+      "company": "Tesla",
+      "position": "Node Js Developer",
+      "experience": "1-3 yr",
+      "location": "Onsite",
+      "workType": "Onsite",
+      "salary": "12LPA",
+      "description": [
+        "A user-friendly interface lets you browse stunning photos and videos",
+        "Filter destinations based on interests and travel style, and create personalized"
+      ]
+    }
+    
+  ]
+}

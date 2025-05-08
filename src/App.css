@@ -1,0 +1,39 @@
+/* App.css */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #F3F4F6;
+  font-family: 'Inter', sans-serif;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+
+.job-listings {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 16px;
+}
+
+@media (max-width: 1200px) {
+  .job-listings {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .job-listings {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .job-listings {
+    grid-template-columns: 1fr;
+  }
+}

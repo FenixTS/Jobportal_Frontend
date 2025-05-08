@@ -1,0 +1,56 @@
+.job-filter-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  margin: 20px auto;
+  margin-bottom: 0px;
+  max-width: 1200px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1 1 200px;
+  min-width: 150px;
+}
+
+.filter-input {
+  font-family: 'Satoshi Variable', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 100%;
+  background: transparent;
+  border: none;
+  color: #686868;
+  outline: none;
+  width: 100%;
+}
+
+.filter-dropdown {
+  font-family: 'Satoshi Variable', sans-serif;
+  font-size: 16px;
+  color: #686868;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.divider {
+  width: 2px;
+  height: 40px;
+  background-color: #e0e0e0;
+  margin: 0 15px;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+

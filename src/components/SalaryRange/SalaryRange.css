@@ -1,0 +1,104 @@
+.salary-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 25%;
+  min-width: 200px;
+  font-family: 'Satoshi Variable', sans-serif;
+  flex: 1 1 200px;
+}
+
+.salary-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a1a1a;
+  
+}
+
+.salary-values {
+  font-weight: 500;
+  position: relative;
+  right: 15px;
+}
+
+.slider-container {
+  position: relative;
+  bottom: 20px;
+  width: 100%;
+  height: 30px;
+
+}
+
+
+/* Remove default styles from range inputs */
+.slider-container input[type="range"] {
+  border: none;
+  outline: none;
+  background: transparent;
+  box-shadow: none;
+}
+.slider-track {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  height: 2px;
+  width: 90%;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.range-thumb {
+  position: absolute;
+  width: 84%;
+  height: 5px;
+  background: none;
+  pointer-events: none;
+  -webkit-appearance: none;
+  z-index: 2;
+}
+
+.range-thumb::-webkit-slider-thumb {
+  pointer-events: all;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #000;
+  -webkit-appearance: none;
+  box-shadow: inset 0 0 0 3.5px #000;
+}
+
+.range-thumb::-moz-range-thumb {
+  pointer-events: all;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #000;
+  appearance: none;
+  box-shadow: inset 0 0 0 3.5px #000;
+}
+
+.salary-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  width: 25%;
+  min-width: 200px;
+  font-family: 'Satoshi Variable', sans-serif;
+  flex: 1 1 200px;
+  padding: 0 15px;
+}
+
+@media (max-width: 992px) {
+  .salary-section {
+      width: 100%;
+      padding: 15px 0;
+  }
+}
