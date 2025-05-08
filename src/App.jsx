@@ -8,7 +8,7 @@ import Index from './Pages/Index/Index';
 export const fallbackJobs  = [
   {
     id: "1",
-    logo: "../src/assets/images/Amazon_logo.png",
+    logo: "../assets/images/Amazon_logo.png",
     company: "Amazon",
     position: "Full Stack Developer",
     experience: "1-3 yr",
@@ -22,7 +22,7 @@ export const fallbackJobs  = [
   },
   {
     id: "2",
-    logo: "../src/assets/images/Tesla_logo.png",
+    logo: "../assets/images/Tesla_logo.png",
     company: "Tesla",
     position: "Node Js Developer",
     experience: "1-3 yr",
@@ -36,7 +36,7 @@ export const fallbackJobs  = [
   },
   {
     id: "3",
-    logo: "../src/assets/images/Swiggy_logo.png",
+    logo: "../assets/images/Swiggy_logo.png",
     company: "Swiggy",
     position: "UX/UI Designer",
     experience: "1-3 yr",
@@ -50,7 +50,7 @@ export const fallbackJobs  = [
   },
   {
     "id": "4",
-    "logo": "../src/assets/images/Amazon_logo.png",
+    "logo": "../assets/images/Amazon_logo.png",
     "company": "Amazon",
     "position": "Full Stack Developer",
     "experience": "1-3 yr",
@@ -64,7 +64,7 @@ export const fallbackJobs  = [
   },
   {
     "id": "5",
-    "logo": "../src/assets/images/Tesla_logo.png",
+    "logo": "../assets/images/Tesla_logo.png",
     "company": "Tesla",
     "position": "Node Js Developer",
     "experience": "1-3 yr",
@@ -78,7 +78,7 @@ export const fallbackJobs  = [
   },
   {
     "id": "6",
-    "logo": "../src/assets/images/Swiggy_logo.png",
+    "logo": "../assets/images/Swiggy_logo.png",
     "company": "Swiggy",
     "position": "UX/UI Designer",
     "experience": "1-3 yr",
@@ -92,7 +92,7 @@ export const fallbackJobs  = [
   },
   {
     "id": "7",
-    "logo": "../src/assets/images/Amazon_logo.png",
+    "logo": "../assets/images/Amazon_logo.png",
     "company": "Amazon",
     "position": "Full Stack Developer",
     "experience": "1-3 yr",
@@ -106,7 +106,7 @@ export const fallbackJobs  = [
   },
   {
     "id": "8",
-    "logo": "../src/assets/images/Tesla_logo.png",
+    "logo": "../assets/images/Tesla_logo.png",
     "company": "Tesla",
     "position": "Node Js Developer",
     "experience": "1-3 yr",
