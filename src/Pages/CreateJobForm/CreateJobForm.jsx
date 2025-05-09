@@ -52,7 +52,7 @@ const CreateJobForm = ({ onClose, setJobs }) => {
       salary: `${formData.salaryMax} LPA`,
       description: [
         formData.description,
-        "A user-friendly interface lets you browse stunning photos and videos",
+        
         "Filter destinations based on interests and travel style, and create personalized",
       ],
     };
