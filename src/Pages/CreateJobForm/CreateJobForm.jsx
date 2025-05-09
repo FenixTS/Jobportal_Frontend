@@ -4,6 +4,7 @@ import "./CreateJobForm.css";
 import { addNewJob } from "../../App";
 
 const CreateJobForm = ({ onClose, setJobs }) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     jobTitle: "",
     companyName: "",
@@ -38,6 +39,7 @@ const CreateJobForm = ({ onClose, setJobs }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     const newJob = {
       id: Date.now().toString(),
@@ -50,7 +52,7 @@ const CreateJobForm = ({ onClose, setJobs }) => {
       salary: `${formData.salaryMax} LPA`,
       description: [
         formData.description,
-        
+        "A user-friendly interface lets you browse stunning photos and videos",
         "Filter destinations based on interests and travel style, and create personalized"
       ],
     };
@@ -68,10 +70,7 @@ const CreateJobForm = ({ onClose, setJobs }) => {
       if (!response.ok) {
         throw new Error('API request failed');
       }
-      // Reload the page to show the new job
-      window.location.reload();
-// Show success message
-alert("Job posted successfully! in Mongodb Atlas");
+
       // If successful, close the form
       onClose();
     } catch (error) {
@@ -85,6 +84,8 @@ alert("Job posted successfully! in Mongodb Atlas");
       
       // Close the form
       onClose();
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -95,6 +96,8 @@ alert("Job posted successfully! in Mongodb Atlas");
       alert("Please fill in all required fields before saving draft");
       return;
     }
+
+    setIsSubmitting(true);
 
     const draftJob = {
       id: Date.now().toString(),
@@ -127,12 +130,14 @@ alert("Job posted successfully! in Mongodb Atlas");
     } catch (error) {
       console.error("Error saving draft:", error);
       alert("Error saving draft");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
   return (
     <div className="popup-overlay">
-      <div className="popup-container" ref={popupRef}>
+      <div className={`popup-container ${isSubmitting ? 'submitting' : ''}`} ref={popupRef}>
         <h2 className="popup-title">Create Job Opening</h2>
 
         <form onSubmit={handleSubmit}>
@@ -284,11 +289,16 @@ alert("Job posted successfully! in Mongodb Atlas");
               type="button"
               className="custom-draft-button"
               onClick={handleSaveDraft}
+              disabled={isSubmitting}
             >
-              Save Draft <ChevronDown size={18} strokeWidth={2.5} />
+              {isSubmitting ? 'Saving...' : 'Save Draft'} <ChevronDown size={18} strokeWidth={2.5} />
             </button>
-            <button type="submit" className="publish-button">
-              Publish <span className="right-arrow">»</span>
+            <button 
+              type="submit" 
+              className="publish-button"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Publishing...' : 'Publish'} <span className="right-arrow">»</span>
             </button>
           </div>
         </form>
