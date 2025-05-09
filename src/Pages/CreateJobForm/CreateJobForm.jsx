@@ -53,35 +53,41 @@ const CreateJobForm = ({ onClose, setJobs }) => {
       description: [
         formData.description,
         "A user-friendly interface lets you browse stunning photos and videos",
-        "Filter destinations based on interests and travel style, and create personalized"
+        "Filter destinations based on interests and travel style, and create personalized",
       ],
     };
 
     try {
       // First try to post to the API
-      const response = await fetch("https://jobportal-backend-new.vercel.app/api/jobs", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newJob),
-      });
+      const response = await fetch(
+        "https://jobportal-backend-new.vercel.app/api/jobs",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newJob),
+        }
+      );
 
       if (!response.ok) {
-        throw new Error('API request failed');
+        throw new Error("API request failed");
       }
-
+      // Reload the page to show the new job
+      window.location.reload();
+      // Show success message
+      alert("JobDatas posted successfully! in Mongodb Atlas");
       // If successful, close the form
       onClose();
     } catch (error) {
-      console.log('API request failed, adding to default jobs:', error);
-      
+      console.log("API request failed, adding to default jobs:", error);
+
       // Add the job to defaultJobs array and update state
       addNewJob(newJob, setJobs);
-      
+
       // Show success message
       alert("Job posted successfully!");
-      
+
       // Close the form
       onClose();
     } finally {
@@ -91,8 +97,14 @@ const CreateJobForm = ({ onClose, setJobs }) => {
 
   const handleSaveDraft = async () => {
     // Validate required fields
-    if (!formData.jobTitle || !formData.companyName || !formData.location || 
-        !formData.jobType || !formData.salaryMax || !formData.description) {
+    if (
+      !formData.jobTitle ||
+      !formData.companyName ||
+      !formData.location ||
+      !formData.jobType ||
+      !formData.salaryMax ||
+      !formData.description
+    ) {
       alert("Please fill in all required fields before saving draft");
       return;
     }
@@ -109,17 +121,20 @@ const CreateJobForm = ({ onClose, setJobs }) => {
       workType: formData.jobType,
       salary: `${formData.salaryMax} LPA`,
       description: [formData.description],
-      status: 'draft'
+      status: "draft",
     };
 
     try {
-      const response = await fetch("https://jobportal-backend-new.vercel.app/api/drafts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(draftJob),
-      });
+      const response = await fetch(
+        "https://jobportal-backend-new.vercel.app/api/drafts",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(draftJob),
+        }
+      );
 
       if (response.ok) {
         alert("Draft saved successfully");
@@ -137,7 +152,10 @@ const CreateJobForm = ({ onClose, setJobs }) => {
 
   return (
     <div className="popup-overlay">
-      <div className={`popup-container ${isSubmitting ? 'submitting' : ''}`} ref={popupRef}>
+      <div
+        className={`popup-container ${isSubmitting ? "submitting" : ""}`}
+        ref={popupRef}
+      >
         <h2 className="popup-title">Create Job Opening</h2>
 
         <form onSubmit={handleSubmit}>
@@ -194,7 +212,6 @@ const CreateJobForm = ({ onClose, setJobs }) => {
                   <option value="Pune">Pune</option>
                   <option value="Noida">Noida</option>
                   <option value="Gurgaon">Gurgaon</option>
-                  
                 </select>
               </div>
             </div>
@@ -291,14 +308,16 @@ const CreateJobForm = ({ onClose, setJobs }) => {
               onClick={handleSaveDraft}
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Saving...' : 'Save Draft'} <ChevronDown size={18} strokeWidth={2.5} />
+              {isSubmitting ? "Saving..." : "Save Draft"}{" "}
+              <ChevronDown size={18} strokeWidth={2.5} />
             </button>
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="publish-button"
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Publishing...' : 'Publish'} <span className="right-arrow">»</span>
+              {isSubmitting ? "Publishing..." : "Publish"}{" "}
+              <span className="right-arrow">»</span>
             </button>
           </div>
         </form>
