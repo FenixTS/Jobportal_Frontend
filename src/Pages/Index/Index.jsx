@@ -3,10 +3,10 @@ import Navbar from '../../components/Navbar/Navbar';
 import JobFilterBar from '../../components/JobFilterBar/JobFilterBar';
 import './Index.css'; // Add this line
 
-function Index() {
+function Index({ setJobs }) {
   return (
     <div className="main-container">
-      <Navbar />
+      <Navbar setJobs={setJobs} />
       <JobFilterBar />
     </div>
   );

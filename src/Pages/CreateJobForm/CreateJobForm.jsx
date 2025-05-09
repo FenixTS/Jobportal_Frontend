@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Calendar, ChevronDown } from "lucide-react";
 import "./CreateJobForm.css";
-import { fallbackJobs } from "../../App"; // Import fallbackJobs from App.jsx
+import { addNewJob } from "../../App";
 
-const CreateJobForm = ({ onClose }) => {
+const CreateJobForm = ({ onClose, setJobs }) => {
   const [formData, setFormData] = useState({
     jobTitle: "",
     companyName: "",
@@ -39,9 +39,8 @@ const CreateJobForm = ({ onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const 
-    newJob = {
-      id: Date.now(),
+    const newJob = {
+      id: Date.now().toString(),
       logo: `../images/${formData.companyName}_logo.png`,
       company: formData.companyName,
       position: formData.jobTitle,
@@ -50,9 +49,9 @@ const CreateJobForm = ({ onClose }) => {
       workType: formData.jobType,
       salary: `${formData.salaryMax} LPA`,
       description: [
-        "A user-friendly interface lets you browse stunning photos and videos",
-        "Filter destinations based on interests and travel style, and create personalized",
         formData.description,
+        "A user-friendly interface lets you browse stunning photos and videos",
+        "Filter destinations based on interests and travel style, and create personalized"
       ],
     };
 
@@ -73,18 +72,15 @@ const CreateJobForm = ({ onClose }) => {
       // If successful, close the form
       onClose();
     } catch (error) {
-      console.log('API request failed, using fallback data:', error);
+      console.log('API request failed, adding to default jobs:', error);
       
-      // If API fails, add to fallbackJobs
-      fallbackJobs.push(newJob);
+      // Add the job to defaultJobs array and update state
+      addNewJob(newJob, setJobs);
       
-      // You might want to store the updated fallbackJobs in localStorage
-      // to persist the data between page refreshes
-      localStorage.setItem('fallbackJobs', JSON.stringify(fallbackJobs));
-      
-      // Show success message and reload home page
+      // Show success message
       alert("Job posted successfully!");
-      window.location.reload();
+      
+      // Close the form
       onClose();
     }
   };
@@ -98,8 +94,8 @@ const CreateJobForm = ({ onClose }) => {
     }
 
     const draftJob = {
-      id: Date.now(),
-      logo: `../src/assets/images/${formData.companyName}_logo.png`,
+      id: Date.now().toString(),
+      logo: `../images/${formData.companyName}_logo.png`,
       company: formData.companyName,
       position: formData.jobTitle,
       experience: formData.experience,

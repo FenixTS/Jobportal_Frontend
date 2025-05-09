@@ -44,17 +44,16 @@
 .slider-track {
   position: absolute;
   top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
+  transform: translateY(-40%);
   height: 2.5px;
-  width: 86%;
+  width: 100%;
   border-radius: 5px;
   z-index: 1;
 }
 
 .range-thumb {
   position: absolute;
-  width: 84%;
+  width: 100%;
   height: 5px;
   background: none;
   pointer-events: none;
@@ -95,6 +94,12 @@
   font-family: 'Satoshi Variable', sans-serif;
   flex: 1 1 200px;
   padding: 0 15px;
+  position: relative;
+  right: 20px;
+
+}
+.salary-values{
+  left: 10px;
 }
 
 @media (max-width: 992px) {

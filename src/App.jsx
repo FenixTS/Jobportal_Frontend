@@ -4,130 +4,130 @@ import JobList from './components/JobList/JobList';
 import './App.css';
 import Index from './Pages/Index/Index';
 
-// Get fallback jobs from localStorage or use default data
-const getFallbackJobs = () => {
-  const storedJobs = localStorage.getItem('fallbackJobs');
-  return storedJobs ? JSON.parse(storedJobs) : [
-    {
-      id: "1",
-      logo: "../images/Amazon_logo.png",
-      company: "Amazon",
-      position: "Full Stack Developer",
-      experience: "1-3 yr",
-      location: "Onsite",
-      workType: "Onsite",
-      salary: "12LPA",
-      description: [
-        "A user-friendly interface lets you browse stunning photos and videos",
-        "Filter destinations based on interests and travel style, and create personalized"
-      ]
-    },
-    {
-      id: "2",
-      logo: "../images/Tesla_logo.png",
-      company: "Tesla",
-      position: "Node Js Developer",
-      experience: "1-3 yr",
-      location: "Onsite",
-      workType: "Onsite",
-      salary: "12LPA",
-      description: [
-        "A user-friendly interface lets you browse stunning photos and videos",
-        "Filter destinations based on interests and travel style, and create personalized"
-      ]
-    },
-    {
-      id: "3",
-      logo: "../images/Swiggy_logo.png",
-      company: "Swiggy",
-      position: "UX/UI Designer",
-      experience: "1-3 yr",
-      location: "Onsite",
-      workType: "Onsite",
-      salary: "12LPA",
-      description: [
-        "A user-friendly interface lets you browse stunning photos and videos",
-        "Filter destinations based on interests and travel style, and create personalized"
-      ]
-    },
-    {
-      "id": "4",
-      "logo": "../images/Amazon_logo.png",
-      "company": "Amazon",
-      "position": "Full Stack Developer",
-      "experience": "1-3 yr",
-      "location": "Onsite",
-      "workType": "Onsite",
-      "salary": "12LPA",
-      "description": [
-        "A user-friendly interface lets you browse stunning photos and videos",
-        "Filter destinations based on interests and travel style, and create personalized"
-      ]
-    },
-    {
-      "id": "5",
-      "logo": "../images/Tesla_logo.png",
-      "company": "Tesla",
-      "position": "Node Js Developer",
-      "experience": "1-3 yr",
-      "location": "Onsite",
-      "workType": "Onsite",
-      "salary": "12LPA",
-      "description": [
-        "A user-friendly interface lets you browse stunning photos and videos",
-        "Filter destinations based on interests and travel style, and create personalized"
-      ]
-    },
-    {
-      "id": "6",
-      "logo": "../images/Swiggy_logo.png",
-      "company": "Swiggy",
-      "position": "UX/UI Designer",
-      "experience": "1-3 yr",
-      "location": "Onsite",
-      "workType": "Onsite",
-      "salary": "12LPA",
-      "description": [
-        "A user-friendly interface lets you browse stunning photos and videos",
-        "Filter destinations based on interests and travel style, and create personalized"
-      ]
-    },
-    {
-      "id": "7",
-      "logo": "../images/Amazon_logo.png",
-      "company": "Amazon",
-      "position": "Full Stack Developer",
-      "experience": "1-3 yr",
-      "location": "Onsite",
-      "workType": "Onsite",
-      "salary": "12LPA",
-      "description": [
-        "A user-friendly interface lets you browse stunning photos and videos",
-        "Filter destinations based on interests and travel style, and create personalized"
-      ]
-    },
-    {
-      "id": "8",
-      "logo": "../images/Tesla_logo.png",
-      "company": "Tesla",
-      "position": "Node Js Developer",
-      "experience": "1-3 yr",
-      "location": "Onsite",
-      "workType": "Onsite",
-      "salary": "12LPA",
-      "description": [
-        "A user-friendly interface lets you browse stunning photos and videos",
-        "Filter destinations based on interests and travel style, and create personalized"
-      ]
-    }
-  ];
+// Default jobs data
+const defaultJobs = [
+  {
+    id: "1",
+    logo: "../images/Amazon_logo.png",
+    company: "Amazon",
+    position: "Full Stack Developer",
+    experience: "1-3 yr",
+    location: "Onsite",
+    workType: "Onsite",
+    salary: "12LPA",
+    description: [
+      "A user-friendly interface lets you browse stunning photos and videos",
+      "Filter destinations based on interests and travel style, and create personalized"
+    ]
+  },
+  {
+    id: "2",
+    logo: "../images/Tesla_logo.png",
+    company: "Tesla",
+    position: "Node Js Developer",
+    experience: "1-3 yr",
+    location: "Onsite",
+    workType: "Onsite",
+    salary: "12LPA",
+    description: [
+      "A user-friendly interface lets you browse stunning photos and videos",
+      "Filter destinations based on interests and travel style, and create personalized"
+    ]
+  },
+  {
+    id: "3",
+    logo: "../images/Swiggy_logo.png",
+    company: "Swiggy",
+    position: "UX/UI Designer",
+    experience: "1-3 yr",
+    location: "Onsite",
+    workType: "Onsite",
+    salary: "12LPA",
+    description: [
+      "A user-friendly interface lets you browse stunning photos and videos",
+      "Filter destinations based on interests and travel style, and create personalized"
+    ]
+  },
+  {
+    id: "4",
+    logo: "../images/Amazon_logo.png",
+    company: "Amazon",
+    position: "Full Stack Developer",
+    experience: "1-3 yr",
+    location: "Onsite",
+    workType: "Onsite",
+    salary: "12LPA",
+    description: [
+      "A user-friendly interface lets you browse stunning photos and videos",
+      "Filter destinations based on interests and travel style, and create personalized"
+    ]
+  },
+  {
+    id: "5",
+    logo: "../images/Tesla_logo.png",
+    company: "Tesla",
+    position: "Node Js Developer",
+    experience: "1-3 yr",
+    location: "Onsite",
+    workType: "Onsite",
+    salary: "12LPA",
+    description: [
+      "A user-friendly interface lets you browse stunning photos and videos",
+      "Filter destinations based on interests and travel style, and create personalized"
+    ]
+  },
+  {
+    id: "6",
+    logo: "../images/Swiggy_logo.png",
+    company: "Swiggy",
+    position: "UX/UI Designer",
+    experience: "1-3 yr",
+    location: "Onsite",
+    workType: "Onsite",
+    salary: "12LPA",
+    description: [
+      "A user-friendly interface lets you browse stunning photos and videos",
+      "Filter destinations based on interests and travel style, and create personalized"
+    ]
+  },
+  {
+    id: "7",
+    logo: "../images/Amazon_logo.png",
+    company: "Amazon",
+    position: "Full Stack Developer",
+    experience: "1-3 yr",
+    location: "Onsite",
+    workType: "Onsite",
+    salary: "12LPA",
+    description: [
+      "A user-friendly interface lets you browse stunning photos and videos",
+      "Filter destinations based on interests and travel style, and create personalized"
+    ]
+  },
+  {
+    id: "8",
+    logo: "../images/Tesla_logo.png",
+    company: "Tesla",
+    position: "Node Js Developer",
+    experience: "1-3 yr",
+    location: "Onsite",
+    workType: "Onsite",
+    salary: "12LPA",
+    description: [
+      "A user-friendly interface lets you browse stunning photos and videos",
+      "Filter destinations based on interests and travel style, and create personalized"
+    ]
+  }
+];
+
+// Function to add a new job
+export const addNewJob = (newJob, setJobs) => {
+  defaultJobs.push(newJob);
+  setJobs([...defaultJobs]); // Update the state with the new array
 };
 
-// Export fallbackJobs as a mutable array
-export const fallbackJobs = getFallbackJobs();
-
 const App = () => {
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState(defaultJobs);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -143,8 +143,8 @@ const App = () => {
       } catch (err) {
         console.error("Error fetching jobs:", err);
         setError(err.message);
-        // Use fallback data when API fails
-        setJobs(fallbackJobs);
+        // Use default jobs when API fails
+        setJobs(defaultJobs);
       } finally {
         setIsLoading(false);
       }
@@ -155,23 +155,22 @@ const App = () => {
 
   return (
     <>
-      <Index />
+      <Index setJobs={setJobs} />
       <div className="app-container">
         {isLoading ? (
           <div className="loading">Loading...</div>
         ) : error ? (
           <div className="error-message">
-            {}
             <div className="job-listings">
-              {jobs.map((job, index) => (
-                <JobList key={index} {...job} />
+              {jobs.map((job) => (
+                <JobList key={job.id} {...job} />
               ))}
             </div>
           </div>
         ) : (
           <div className="job-listings">
-            {jobs.map((job, index) => (
-              <JobList key={index} {...job} />
+            {jobs.map((job) => (
+              <JobList key={job.id} {...job} />
             ))}
           </div>
         )}

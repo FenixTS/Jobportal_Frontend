@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import './Navbar.css';
 import CreateJobForm from '../../Pages/CreateJobForm/CreateJobForm';
 
-const Navbar = () => {
+const Navbar = ({ setJobs }) => {
   const [showJobForm, setShowJobForm] = useState(false);
   const modalRef = useRef(null);
 
@@ -49,7 +49,7 @@ const Navbar = () => {
             <div className="modal-header">
               <button className="close-modal-btn" onClick={toggleJobForm}>×</button>
             </div>
-            <CreateJobForm onClose={toggleJobForm} />
+            <CreateJobForm onClose={toggleJobForm} setJobs={setJobs} />
           </div>
         </div>
       )}
