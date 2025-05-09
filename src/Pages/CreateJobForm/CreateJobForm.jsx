@@ -57,7 +57,7 @@ const CreateJobForm = ({ onClose, setJobs }) => {
 
     try {
       // First try to post to the API
-      const response = await fetch("http://localhost:5000/api/jobs", {
+      const response = await fetch("https://jobportal-backend-new.vercel.app/api/jobs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -107,7 +107,7 @@ const CreateJobForm = ({ onClose, setJobs }) => {
     };
 
     try {
-      const response = await fetch("http://localhost:3000/drafts", {
+      const response = await fetch("https://jobportal-backend-new.vercel.app/api/drafts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
