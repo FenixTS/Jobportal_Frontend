@@ -148,7 +148,7 @@ const App = () => {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/jobs");
+        const response = await fetch("https://jobportal-backend-new.vercel.app/api/jobs");
         if (!response.ok) {
           throw new Error('Failed to fetch jobs');
         }

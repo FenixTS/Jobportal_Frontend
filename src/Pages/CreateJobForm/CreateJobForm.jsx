@@ -50,7 +50,7 @@ const CreateJobForm = ({ onClose, setJobs }) => {
       salary: `${formData.salaryMax} LPA`,
       description: [
         formData.description,
-        "A user-friendly interface lets you browse stunning photos and videos",
+        
         "Filter destinations based on interests and travel style, and create personalized"
       ],
     };
@@ -68,7 +68,10 @@ const CreateJobForm = ({ onClose, setJobs }) => {
       if (!response.ok) {
         throw new Error('API request failed');
       }
-
+      // Reload the page to show the new job
+      window.location.reload();
+// Show success message
+alert("Job posted successfully! in Mongodb Atlas");
       // If successful, close the form
       onClose();
     } catch (error) {
