@@ -59,7 +59,8 @@
   pointer-events: none;
   -webkit-appearance: none;
   z-index: 2;
-  right: 10px;
+  right: -14px;
+  top: 1px;
 }
 
 .range-thumb::-webkit-slider-thumb {
