@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Calendar, ChevronDown } from "lucide-react";
 import "./CreateJobForm.css";
 import { addNewJob } from "../../App";
-
+import { LOCATIONS, JOB_TYPES } from "../../constants/constants";
 const CreateJobForm = ({ onClose, setJobs }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -203,15 +203,9 @@ const CreateJobForm = ({ onClose, setJobs }) => {
                   <option value="" disabled>
                     Choose Preferred Location
                   </option>
-                  <option value="Chennai">Chennai</option>
-                  <option value="Bangalore">Bangalore</option>
-                  <option value="Hyderabad">Hyderabad</option>
-                  <option value="Mumbai">Mumbai</option>
-                  <option value="Delhi">Delhi</option>
-                  <option value="Kolkata">Kolkata</option>
-                  <option value="Pune">Pune</option>
-                  <option value="Noida">Noida</option>
-                  <option value="Gurgaon">Gurgaon</option>
+                  {LOCATIONS.map((location, index) => (
+                    <option key={index} value={location}>{location}</option>
+                  ))}
                 </select>
               </div>
             </div>
@@ -229,9 +223,9 @@ const CreateJobForm = ({ onClose, setJobs }) => {
                   <option value="" disabled>
                     Select Job Type
                   </option>
-                  <option value="Full Time">Full Time</option>
-                  <option value="Part Time">Part Time</option>
-                  <option value="Contract">Contract</option>
+                  {JOB_TYPES.map((type, index) => (
+                    <option key={index} value={type}>{type}</option>
+                  ))}
                 </select>
               </div>
             </div>
