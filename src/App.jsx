@@ -138,6 +138,7 @@ const App = () => {
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [search, setSearch] = useState('');
 
   // Function to update jobs state
   const updateJobs = () => {
@@ -177,23 +178,29 @@ const App = () => {
     return () => window.removeEventListener('storage', handleStorageChange);
   }, []);
 
+  // Filter jobs based on search term
+  const filteredJobs = jobs.filter(job => 
+    job.position.toLowerCase().includes(search.toLowerCase()) || 
+    job.company.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <>
-      <Index />
+      <Index search={search} setSearch={setSearch} />
       <div className="app-container">
         {isLoading ? (
           <div className="loading">Loading...</div>
         ) : error ? (
           <div className="error-message">
             <div className="job-listings">
-              {jobs.map((job) => (
+              {filteredJobs.map((job) => (
                 <JobList key={job.id} {...job} />
               ))}
             </div>
           </div>
         ) : (
           <div className="job-listings">
-            {jobs.map((job) => (
+            {filteredJobs.map((job) => (
               <JobList key={job.id} {...job} />
             ))}
           </div>
