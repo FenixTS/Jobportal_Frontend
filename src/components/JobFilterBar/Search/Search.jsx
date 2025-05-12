@@ -13,6 +13,7 @@ function Search({ search, setSearch }) {
   <line x1="47" y1="48" x2="70" y2="70" />
 </svg>
       <input
+        
         type="text"
         placeholder="Search By Job Title, Role"
         className="filter-input"

@@ -42,8 +42,8 @@ const SalaryRange = ({ selectedSalaryRange, setSelectedSalaryRange }) => {
         </div>
       </div>
 
-      <div className="slider-container">
-        <div className="slider-track" style={getBackground()}></div>
+      <div className="slider-container" >
+        <div className="slider-track" style={getBackground() }></div>
 
         <input
           type="range"
