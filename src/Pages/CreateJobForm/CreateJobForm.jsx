@@ -210,13 +210,14 @@ const CreateJobForm = ({ onClose, setJobs }) => {
               <label htmlFor="location">Location</label>
               <div className="select-wrapper">
                 <select
+                style={{ color: "#BCBCBC" }}
                   id="location"
                   name="location"
                   value={formData.location}
                   onChange={handleChange}
                   required
                 >
-                  <option value="" disabled>
+                  <option value="" disabled >
                     Choose Preferred Location
                   </option>
                   {LOCATIONS.map((location) => (
@@ -232,6 +233,7 @@ const CreateJobForm = ({ onClose, setJobs }) => {
               <label htmlFor="jobType">Job Type</label>
               <div className="select-wrapper">
                 <select
+                 style={{ color: "#BCBCBC" }}
                   id="jobType"
                   name="jobType"
                   value={formData.jobType}
@@ -295,8 +297,9 @@ const CreateJobForm = ({ onClose, setJobs }) => {
               <label htmlFor="deadline">Application Deadline</label>
               <div className="date-input-container">
                 <input
+                  style={{ color: "#BCBCBC" }}
                   className="input-wide"
-                  type="date"
+                  type="date"                  
                   id="deadline"
                   name="deadline"
                   value={formData.deadline}
@@ -304,7 +307,7 @@ const CreateJobForm = ({ onClose, setJobs }) => {
                   required
                   min={new Date().toISOString().split('T')[0]}
                 />
-                <Calendar className="calendar-icon" size={20} />
+                {/* <Calendar className="calendar-icon" style={{ color: "#BCBCBC" }} size={20} /> */}
               </div>
               {errors.deadline && (
                 <span className="error-message">{errors.deadline}</span>
