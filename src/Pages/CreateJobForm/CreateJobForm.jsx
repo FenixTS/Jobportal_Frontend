@@ -2,8 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Calendar, ChevronDown } from "lucide-react";
 import "./CreateJobForm.css";
 import { addNewJob } from "../../App";
-import { LOCATIONS, JOB_TYPES } from "../../constants/constants";
-import { convertToLPA } from "../../utils/salaryUtils";
+import { API_URL, JOB_TYPES, LOCATIONS, EXPERIENCE_LEVELS } from "../../constants/constants";
 
 const CreateJobForm = ({ onClose, setJobs }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -16,8 +15,10 @@ const CreateJobForm = ({ onClose, setJobs }) => {
     salaryMax: "",
     deadline: "",
     description: "",
-    experience: "1-3 yr", // default experience
+    experience: EXPERIENCE_LEVELS[1], // default to "1-3 yr"
   });
+
+  const [errors, setErrors] = useState({});
 
   const popupRef = useRef(null);
 
@@ -34,79 +35,77 @@ const CreateJobForm = ({ onClose, setJobs }) => {
     };
   }, [onClose]);
 
+  const validateForm = () => {
+    const newErrors = {};
+    if (parseFloat(formData.salaryMin) > parseFloat(formData.salaryMax)) {
+      newErrors.salary = "Minimum salary cannot be greater than maximum salary";
+    }
+    if (new Date(formData.deadline) < new Date()) {
+      newErrors.deadline = "Deadline cannot be in the past";
+    }
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    // Clear error when field is modified
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: undefined }));
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
+    
     setIsSubmitting(true);
 
+    // Calculate average salary and convert to LPA format
+    const minSalary = parseFloat(formData.salaryMin);
+    const maxSalary = parseFloat(formData.salaryMax);
+    const averageSalary = ((minSalary + maxSalary) / 2).toFixed(1);
+    const salaryInLPA = `${averageSalary}LPA`;
+
+    const newJob = {
+      logo: `../images/${formData.companyName}_logo.png`,
+      company: formData.companyName,
+      position: formData.jobTitle,
+      experience: formData.experience,
+      location: formData.location,
+      workType: formData.jobType,
+      salary: salaryInLPA,
+      description: [
+        formData.description,
+        "Filter destinations based on interests and travel style, and create personalized"
+      ],
+      deadline: formData.deadline,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
     try {
-      // Convert both min and max salaries to LPA format
-      const monthlySalaryMin = parseFloat(formData.salaryMin);
-      const monthlySalaryMax = parseFloat(formData.salaryMax);
-
-      if (isNaN(monthlySalaryMin) || isNaN(monthlySalaryMax)) {
-        throw new Error('Please enter valid salary amounts');
-      }
-
-      if (monthlySalaryMin > monthlySalaryMax) {
-        throw new Error('Minimum salary cannot be greater than maximum salary');
-      }
-
-      const salaryMinLPA = convertToLPA(monthlySalaryMin);
-      const salaryMaxLPA = convertToLPA(monthlySalaryMax);
-      
-      const newJob = {
-        id: Date.now().toString(),
-        logo: `../images/${formData.companyName}_logo.png`,
-        company: formData.companyName,
-        position: formData.jobTitle,
-        experience: formData.experience,
-        location: formData.location,
-        workType: formData.jobType,
-        salary: `${salaryMinLPA} - ${salaryMaxLPA}`,
-        description: [
-          formData.description,
-          
-          "Filter destinations based on interests and travel style, and create personalized",
-        ],
-        postedAt: new Date().toISOString(),
-        status: 'active'
-      };
-
-      const response = await fetch(
-        API_URL,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newJob),
-        }
-      );
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newJob),
+      });
 
       if (!response.ok) {
-        throw new Error("API request failed");
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Failed to create job");
       }
 
       const data = await response.json();
-      console.log('Job created successfully:', data);
-      
-      if (setJobs) {
-        setJobs(prevJobs => [...prevJobs, data]);
-      }
-      
-      if (onClose) {
-        onClose();
-      } else {
-        window.location.reload();
-      }
+      setJobs(prevJobs => [...prevJobs, data]);
+      alert("Job posted successfully!");
+      onClose();
     } catch (error) {
-      console.error('Error creating job:', error);
-      alert("Error creating job. Please try again.");
+      console.error("Error posting job:", error);
+      alert(error.message || "Failed to post job. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -220,8 +219,10 @@ const CreateJobForm = ({ onClose, setJobs }) => {
                   <option value="" disabled>
                     Choose Preferred Location
                   </option>
-                  {LOCATIONS.map((location, index) => (
-                    <option key={index} value={location}>{location}</option>
+                  {LOCATIONS.map((location) => (
+                    <option key={location} value={location}>
+                      {location}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -240,8 +241,10 @@ const CreateJobForm = ({ onClose, setJobs }) => {
                   <option value="" disabled>
                     Select Job Type
                   </option>
-                  {JOB_TYPES.map((type, index) => (
-                    <option key={index} value={type}>{type}</option>
+                  {JOB_TYPES.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -250,7 +253,7 @@ const CreateJobForm = ({ onClose, setJobs }) => {
 
           <div className="form-row">
             <div className="form-group">
-              <label htmlFor="salary">Salary Range</label>
+              <label htmlFor="salary">Salary Range (LPA)</label>
               <div className="salary-inputs">
                 <div className="salary-input-container">
                   <span className="currency-symbol">₹</span>
@@ -259,10 +262,12 @@ const CreateJobForm = ({ onClose, setJobs }) => {
                     type="number"
                     id="salaryMin"
                     name="salaryMin"
-                    placeholder="0"
+                    placeholder="Min LPA"
                     value={formData.salaryMin}
                     onChange={handleChange}
                     required
+                    min="0"
+                    step="0.1"
                   />
                 </div>
                 <div className="salary-input-container">
@@ -272,13 +277,18 @@ const CreateJobForm = ({ onClose, setJobs }) => {
                     type="number"
                     id="salaryMax"
                     name="salaryMax"
-                    placeholder="12,00,000"
+                    placeholder="Max LPA"
                     value={formData.salaryMax}
                     onChange={handleChange}
                     required
+                    min="0"
+                    step="0.1"
                   />
                 </div>
               </div>
+              {errors.salary && (
+                <span className="error-message">{errors.salary}</span>
+              )}
             </div>
 
             <div className="form-group">
@@ -292,9 +302,13 @@ const CreateJobForm = ({ onClose, setJobs }) => {
                   value={formData.deadline}
                   onChange={handleChange}
                   required
+                  min={new Date().toISOString().split('T')[0]}
                 />
                 <Calendar className="calendar-icon" size={20} />
               </div>
+              {errors.deadline && (
+                <span className="error-message">{errors.deadline}</span>
+              )}
             </div>
           </div>
 

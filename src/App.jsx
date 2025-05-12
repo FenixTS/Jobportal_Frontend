@@ -89,7 +89,7 @@ const App = () => {
           <div className="error-message">
             <div className="job-listings">
               {filteredJobs.map((job) => (
-                <JobList key={job.id} {...job} />
+                <JobList key={job._id} {...job} />
               ))}
             </div>
           </div>
@@ -100,7 +100,7 @@ const App = () => {
         ) : (
           <div className="job-listings">
             {filteredJobs.map((job) => (
-              <JobList key={job.id} {...job} />
+              <JobList key={job._id} {...job} />
             ))}
           </div>
         )}

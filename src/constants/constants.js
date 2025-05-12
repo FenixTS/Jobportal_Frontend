@@ -110,7 +110,22 @@ export const DEFAULT_JOBS = [
       "A user-friendly interface lets you browse stunning photos and videos",
       "Filter destinations based on interests and travel style, and create personalized"
     ]
+  },
+  {
+    "id": "9",
+    "logo": "../images/Amazon_logo.png",
+    "company": "Amazon",
+    "position": "Full Stack Developer",
+    "experience": "1-3 yr",
+    "location": "Chennai",
+    "workType": "Full-time",
+    "salary": "1.5LPA",
+    "description": [
+      "A user-friendly interface lets you browse stunning photos and videos",
+      "Filter destinations based on interests and travel style, and create personalized"
+    ]
   }
+
 ];
 
 // API URL constant
