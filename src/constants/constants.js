@@ -5,9 +5,9 @@ export const DEFAULT_JOBS = [
     "company": "Amazon",
     "position": "Full Stack Developer",
     "experience": "1-3 yr",
-    "location": "Onsite",
-    "workType": "Onsite",
-    "salary": "12LPA",
+    "location": "Chennai",
+    "workType": "Full-time",
+    "salary": "2.5LPA",
     "description": [
       "A user-friendly interface lets you browse stunning photos and videos",
       "Filter destinations based on interests and travel style, and create personalized"
@@ -19,9 +19,9 @@ export const DEFAULT_JOBS = [
     "company": "Tesla",
     "position": "Node Js Developer",
     "experience": "1-3 yr",
-    "location": "Onsite",
-    "workType": "Onsite",
-    "salary": "12LPA",
+    "location": "Bangalore",
+    "workType": "Full-time",
+    "salary": "2.5LPA",
     "description": [
       "A user-friendly interface lets you browse stunning photos and videos",
       "Filter destinations based on interests and travel style, and create personalized"
@@ -33,9 +33,9 @@ export const DEFAULT_JOBS = [
     "company": "Swiggy",
     "position": "UX/UI Designer",
     "experience": "1-3 yr",
-    "location": "Onsite",
-    "workType": "Onsite",
-    "salary": "12LPA",
+    "location": "Hyderabad",
+    "workType": "Part-time",
+    "salary": "3.5LPA",
     "description": [
       "A user-friendly interface lets you browse stunning photos and videos",
       "Filter destinations based on interests and travel style, and create personalized"
@@ -47,9 +47,9 @@ export const DEFAULT_JOBS = [
     "company": "Amazon",
     "position": "Full Stack Developer",
     "experience": "1-3 yr",
-    "location": "Onsite",
-    "workType": "Onsite",
-    "salary": "12LPA",
+    "location": "Mumbai",
+    "workType": "Full-time",
+      "salary": "4.5LPA",
     "description": [
       "A user-friendly interface lets you browse stunning photos and videos",
       "Filter destinations based on interests and travel style, and create personalized"
@@ -61,9 +61,9 @@ export const DEFAULT_JOBS = [
     "company": "Tesla",
     "position": "Node Js Developer",
     "experience": "1-3 yr",
-    "location": "Onsite",
-    "workType": "Onsite",
-    "salary": "12LPA",
+    "location": "Delhi",
+    "workType": "Intern",
+      "salary": "5.5LPA",
     "description": [
       "A user-friendly interface lets you browse stunning photos and videos",
       "Filter destinations based on interests and travel style, and create personalized"
@@ -75,9 +75,9 @@ export const DEFAULT_JOBS = [
     "company": "Swiggy",
     "position": "UX/UI Designer",
     "experience": "1-3 yr",
-    "location": "Onsite",
-    "workType": "Onsite",
-    "salary": "12LPA",
+    "location": "Kolkata",
+    "workType": "Part-time",
+      "salary": "6.5LPA",
     "description": [
       "A user-friendly interface lets you browse stunning photos and videos",
       "Filter destinations based on interests and travel style, and create personalized"
@@ -89,9 +89,9 @@ export const DEFAULT_JOBS = [
     "company": "Amazon",
     "position": "Full Stack Developer",
     "experience": "1-3 yr",
-    "location": "Onsite",
-    "workType": "Onsite",
-    "salary": "12LPA",
+    "location": "Pune",
+    "workType": "Full-time",
+    "salary": "7.5LPA",
     "description": [
       "A user-friendly interface lets you browse stunning photos and videos",
       "Filter destinations based on interests and travel style, and create personalized"
@@ -103,9 +103,9 @@ export const DEFAULT_JOBS = [
     "company": "Tesla",
     "position": "Node Js Developer",
     "experience": "1-3 yr",
-    "location": "Onsite",
-    "workType": "Onsite",
-    "salary": "12LPA",
+    "location": "Chennai",
+    "workType": "Full-time",
+    "salary": "1.5LPA",
     "description": [
       "A user-friendly interface lets you browse stunning photos and videos",
       "Filter destinations based on interests and travel style, and create personalized"
@@ -120,11 +120,11 @@ export const API_URL = "https://jobportal-backend-new.vercel.app/api/jobs";
 export const JOB_TYPES = [
   "Full-time",
   "Part-time",
-  "Contract",
-  "Internship",
-  "Remote",
-  "Onsite",
-  "Hybrid"
+  // "Contract",
+  "Intern",
+  // "Remote",
+  // "Onsite",
+  // "Hybrid"
 ];
 
 // Locations

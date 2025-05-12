@@ -10,7 +10,9 @@ function Index({
   selectedLocation, 
   setSelectedLocation,
   selectedJobType,
-  setSelectedJobType 
+  setSelectedJobType,
+  selectedSalaryRange,
+  setSelectedSalaryRange
 }) {
   return (
     <div className="main-container">
@@ -22,6 +24,8 @@ function Index({
         setSelectedLocation={setSelectedLocation}
         selectedJobType={selectedJobType}
         setSelectedJobType={setSelectedJobType}
+        selectedSalaryRange={selectedSalaryRange}
+        setSelectedSalaryRange={setSelectedSalaryRange}
       />
     </div>
   );

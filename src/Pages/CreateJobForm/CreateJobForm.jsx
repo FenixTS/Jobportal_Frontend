@@ -3,6 +3,8 @@ import { Calendar, ChevronDown } from "lucide-react";
 import "./CreateJobForm.css";
 import { addNewJob } from "../../App";
 import { LOCATIONS, JOB_TYPES } from "../../constants/constants";
+import { convertToLPA } from "../../utils/salaryUtils";
+
 const CreateJobForm = ({ onClose, setJobs }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -41,26 +43,42 @@ const CreateJobForm = ({ onClose, setJobs }) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    const newJob = {
-      id: Date.now().toString(),
-      logo: `../images/${formData.companyName}_logo.png`,
-      company: formData.companyName,
-      position: formData.jobTitle,
-      experience: formData.experience,
-      location: formData.location,
-      workType: formData.jobType,
-      salary: `${formData.salaryMax} LPA`,
-      description: [
-        formData.description,
-        
-        "Filter destinations based on interests and travel style, and create personalized",
-      ],
-    };
-
     try {
-      // First try to post to the API
+      // Convert both min and max salaries to LPA format
+      const monthlySalaryMin = parseFloat(formData.salaryMin);
+      const monthlySalaryMax = parseFloat(formData.salaryMax);
+
+      if (isNaN(monthlySalaryMin) || isNaN(monthlySalaryMax)) {
+        throw new Error('Please enter valid salary amounts');
+      }
+
+      if (monthlySalaryMin > monthlySalaryMax) {
+        throw new Error('Minimum salary cannot be greater than maximum salary');
+      }
+
+      const salaryMinLPA = convertToLPA(monthlySalaryMin);
+      const salaryMaxLPA = convertToLPA(monthlySalaryMax);
+      
+      const newJob = {
+        id: Date.now().toString(),
+        logo: `../images/${formData.companyName}_logo.png`,
+        company: formData.companyName,
+        position: formData.jobTitle,
+        experience: formData.experience,
+        location: formData.location,
+        workType: formData.jobType,
+        salary: `${salaryMinLPA} - ${salaryMaxLPA}`,
+        description: [
+          formData.description,
+          
+          "Filter destinations based on interests and travel style, and create personalized",
+        ],
+        postedAt: new Date().toISOString(),
+        status: 'active'
+      };
+
       const response = await fetch(
-        "https://jobportal-backend-new.vercel.app/api/jobs",
+        API_URL,
         {
           method: "POST",
           headers: {
@@ -73,23 +91,22 @@ const CreateJobForm = ({ onClose, setJobs }) => {
       if (!response.ok) {
         throw new Error("API request failed");
       }
-      // Reload the page to show the new job
-      window.location.reload();
-      // Show success message
-      alert("JobDatas posted successfully! in Mongodb Atlas");
-      // If successful, close the form
-      onClose();
+
+      const data = await response.json();
+      console.log('Job created successfully:', data);
+      
+      if (setJobs) {
+        setJobs(prevJobs => [...prevJobs, data]);
+      }
+      
+      if (onClose) {
+        onClose();
+      } else {
+        window.location.reload();
+      }
     } catch (error) {
-      console.log("API request failed, adding to default jobs:", error);
-
-      // Add the job to defaultJobs array and update state
-      addNewJob(newJob, setJobs);
-
-      // Show success message
-      alert("Job posted successfully!");
-
-      // Close the form
-      onClose();
+      console.error('Error creating job:', error);
+      alert("Error creating job. Please try again.");
     } finally {
       setIsSubmitting(false);
     }

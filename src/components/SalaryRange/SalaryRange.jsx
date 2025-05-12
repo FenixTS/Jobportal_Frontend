@@ -1,20 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./SalaryRange.css";
 
-const SalaryRange = ({ selectedSalaryRange, setSelectedSalaryRange }) => {
-  const [min, setMin] = useState(10000);
-  const [max, setMax] = useState(80000);
+const SalaryRange = ({ selectedSalaryRange, setSelectedSalaryRange, hasJobsInRange }) => {
+  const [min, setMin] = useState(27000);
+  const [max, setMax] = useState(64000);
+  const [showWarning, setShowWarning] = useState(false);
+
+  useEffect(() => {
+    setShowWarning(!hasJobsInRange);
+  }, [hasJobsInRange]);
 
   const handleMin = (e) => {
     const value = Math.floor(Math.min(Number(e.target.value), max - 5000));
     setMin(value);
     setSelectedSalaryRange({ min: value, max });
+    setShowWarning(false);
   };
 
   const handleMax = (e) => {
     const value = Math.floor(Math.max(Number(e.target.value), min + 5000));
     setMax(value);
     setSelectedSalaryRange({ min, max: value });
+    setShowWarning(false);
   };
 
   const getBackground = () => {
@@ -62,8 +69,14 @@ const SalaryRange = ({ selectedSalaryRange, setSelectedSalaryRange }) => {
           className="range-thumb"
         />
       </div>
+
+      {showWarning && (
+        <div className="salary-warning">
+          No jobs found in this range. Try adjusting the salary range.
+        </div>
+      )}
     </div>
   );
 };
 
-export default SalaryRange;
+export default SalaryRange; 

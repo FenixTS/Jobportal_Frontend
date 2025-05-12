@@ -1,6 +1,7 @@
 // App.js
 import React, { useEffect, useState } from 'react';
 import JobList from './components/JobList/JobList';
+import NoJobsFound from './components/NoJobsFound/NoJobsFound';
 import './App.css';
 import Index from './Pages/Index/Index';
 import { DEFAULT_JOBS, API_URL } from './constants/constants';
@@ -17,6 +18,7 @@ const App = () => {
   const [search, setSearch] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('');
   const [selectedJobType, setSelectedJobType] = useState('');
+  const [selectedSalaryRange, setSelectedSalaryRange] = useState({ min: 10000, max: 80000 });
 
   useEffect(() => {
     const fetchJobs = async () => {
@@ -40,14 +42,32 @@ const App = () => {
     fetchJobs();
   }, []);
 
-  // Filter jobs based on search term, location, and job type
+  // Helper function to convert salary string to number
+  const convertSalaryToNumber = (salaryStr) => {
+    // Remove 'LPA' and convert to number
+    const numericValue = parseFloat(salaryStr.replace('LPA', ''));
+    // Convert LPA to monthly salary (multiply by 100000 and divide by 12)
+    return (numericValue * 100000) / 12;
+  };
+
+  // Filter jobs based on all criteria
   const filteredJobs = jobs.filter(job => {
     const matchesSearch = job.position.toLowerCase().includes(search.toLowerCase()) || 
                          job.company.toLowerCase().includes(search.toLowerCase());
     const matchesLocation = !selectedLocation || job.location === selectedLocation;
     const matchesJobType = !selectedJobType || job.workType === selectedJobType;
-    return matchesSearch && matchesLocation && matchesJobType;
+    
+    // Convert job salary to monthly value for comparison
+    const jobSalary = convertSalaryToNumber(job.salary);
+    const matchesSalary = jobSalary >= selectedSalaryRange.min && 
+                         jobSalary <= selectedSalaryRange.max;
+
+    return matchesSearch && matchesLocation && matchesJobType && matchesSalary;
   });
+
+  // Check if no jobs are found due to salary range
+  const isNoJobsDueToSalary = filteredJobs.length === 0 && 
+    (selectedSalaryRange.min !== 27000 || selectedSalaryRange.max !== 64000);
 
   return (
     <>
@@ -58,6 +78,9 @@ const App = () => {
         setSelectedLocation={setSelectedLocation}
         selectedJobType={selectedJobType}
         setSelectedJobType={setSelectedJobType}
+        selectedSalaryRange={selectedSalaryRange}
+        setSelectedSalaryRange={setSelectedSalaryRange}
+        setJobs={setJobs}
       />
       <div className="app-container">
         {isLoading ? (
@@ -70,6 +93,10 @@ const App = () => {
               ))}
             </div>
           </div>
+        ) : isNoJobsDueToSalary ? (
+          <NoJobsFound 
+            message="No jobs found . Please adjust the filter to see more opportunities."
+          />
         ) : (
           <div className="job-listings">
             {filteredJobs.map((job) => (

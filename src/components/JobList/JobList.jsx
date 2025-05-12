@@ -1,5 +1,5 @@
-import React from 'react';
-import './JobList.css';
+import React from "react";
+import "./JobList.css";
 
 const JobList = ({
   logo,
@@ -9,7 +9,7 @@ const JobList = ({
   location,
   workType,
   salary,
-  description
+  description,
 }) => {
   return (
     <div className="job-card">
@@ -27,22 +27,76 @@ const JobList = ({
 
         <div className="job-details">
           <div className="job-detail">
-            <svg viewBox="0 0 24 24">
-              <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,6A2,2 0 0,0 10,8A2,2 0 0,0 12,10A2,2 0 0,0 14,8A2,2 0 0,0 12,6M12,13C14.67,13 20,14.33 20,17V20H4V17C4,14.33 9.33,13 12,13M12,14.9C9.03,14.9 5.9,16.36 5.9,17V18.1H18.1V17C18.1,16.36 14.97,14.9 12,14.9Z" fill="#9CA3AF" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="64"
+              height="64"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#5A5A5A"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="9" cy="6" r="4" />
+              <path d="M1 20c0-3.5 3.5-7 8-7s8 3.5 8 7" />
+              <line x1="17" y1="11" x2="23" y2="11" />
+              <line x1="20" y1="8" x2="20" y2="14" />
             </svg>
             <span>{experience} Exp</span>
           </div>
 
           <div className="job-detail">
             <svg viewBox="0 0 24 24">
-              <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" fill="#9CA3AF" />
+              <path
+                d="M4 20V8a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v12"
+                stroke="#5A5A5A"
+                strokeWidth="2"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <rect
+                x="2"
+                y="20"
+                width="25"
+                height="2"
+                rx="1"
+                ry="1"
+                fill="#5A5A5A"
+              />
+              <rect
+                x="16"
+                y="13"
+                width="6"
+                height="8"
+                rx="2"
+                stroke="#5A5A5A"
+                strokeWidth="2"
+                fill="none"
+              />
+              <rect x="8" y="8" width="4" height="12" rx="2" fill="none" />
+              <rect x="7" y="8" width="6" height="2" rx="1" fill="#5A5A5A" />
+              <rect x="7" y="11" width="6" height="2" rx="1" fill="#5A5A5A" />
             </svg>
-            <span>{location}</span>
+            <span>{workType}</span>
           </div>
 
           <div className="job-detail">
-            <svg viewBox="0 0 24 24">
-              <path d="M21,5C19.89,4.65 18.67,4.5 17.5,4.5C15.55,4.5 13.45,4.9 12,6C10.55,4.9 8.45,4.5 6.5,4.5C4.55,4.5 2.45,4.9 1,6V20.65C1,20.9 1.25,21.15 1.5,21.15C1.6,21.15 1.65,21.1 1.75,21.1C3.1,20.45 5.05,20 6.5,20C8.45,20 10.55,20.4 12,21.5C13.35,20.65 15.8,20 17.5,20C19.15,20 20.85,20.3 22.25,21.05C22.35,21.1 22.4,21.1 22.5,21.1C22.75,21.1 23,20.85 23,20.6V6C22.4,5.55 21.75,5.25 21,5M21,18.5C19.9,18.15 18.7,18 17.5,18C15.8,18 13.35,18.65 12,19.5V8C13.35,7.15 15.8,6.5 17.5,6.5C18.7,6.5 19.9,6.65 21,7V18.5Z" fill="#9CA3AF" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="64"
+              height="64"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#5A5A5A"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polygon points="12 2 2 7 12 12 22 7 12 2" />
+              <polyline points="2 17 12 22 22 17" />
+              <polyline points="2 12 12 17 22 12" />
             </svg>
             <span>{salary}</span>
           </div>

@@ -11,7 +11,9 @@ const JobFilterBar = ({
   selectedLocation, 
   setSelectedLocation,
   selectedJobType,
-  setSelectedJobType
+  setSelectedJobType,
+  selectedSalaryRange,
+  setSelectedSalaryRange
 }) => {
   return (
     <div className="job-filter-container">
@@ -33,7 +35,10 @@ const JobFilterBar = ({
 
       <div className="divider" />
 
-      <SalaryRange/>
+      <SalaryRange 
+        selectedSalaryRange={selectedSalaryRange}
+        setSelectedSalaryRange={setSelectedSalaryRange}
+      />
     </div>
   );
 };

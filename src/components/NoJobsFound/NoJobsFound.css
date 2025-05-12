@@ -1,0 +1,28 @@
+.no-jobs-container {
+  width: 100%;
+  padding: 40px 20px;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+.no-jobs-content {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.no-jobs-content h2 {
+  color: #ff4d4d;
+  font-size: 24px;
+  margin-bottom: 16px;
+  font-family: 'Satoshi Variable', sans-serif;
+}
+
+.no-jobs-content p {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: 'Satoshi Variable', sans-serif;
+} 
