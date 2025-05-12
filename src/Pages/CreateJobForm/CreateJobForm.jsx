@@ -129,7 +129,6 @@ const CreateJobForm = ({ onClose, setJobs }) => {
     setIsSubmitting(true);
 
     const draftJob = {
-      id: Date.now().toString(),
       logo: `../images/${formData.companyName}_logo.png`,
       company: formData.companyName,
       position: formData.jobTitle,
@@ -139,6 +138,7 @@ const CreateJobForm = ({ onClose, setJobs }) => {
       salary: `${formData.salaryMax} LPA`,
       description: [formData.description],
       status: "draft",
+      createdAt: new Date().toISOString()
     };
 
     try {
