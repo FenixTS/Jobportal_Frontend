@@ -101,7 +101,7 @@ const CreateJobForm = ({ onClose, setJobs }) => {
 
       const data = await response.json();
       setJobs(prevJobs => [...prevJobs, data]);
-      alert("Job posted successfully!");
+      alert("Job posted successfully! Please check the job list page to see the new job.");
       onClose();
     } catch (error) {
       console.error("Error posting job:", error);
@@ -210,18 +210,18 @@ const CreateJobForm = ({ onClose, setJobs }) => {
               <label htmlFor="location">Location</label>
               <div className="select-wrapper">
                 <select
-                style={{ color: "#BCBCBC" }}
                   id="location"
                   name="location"
                   value={formData.location}
                   onChange={handleChange}
                   required
+                  style={{ color: formData.location ? "#000000" : "#BCBCBC" }}
                 >
-                  <option value="" disabled >
+                  <option value="" disabled>
                     Choose Preferred Location
                   </option>
                   {LOCATIONS.map((location) => (
-                    <option key={location} value={location}>
+                    <option key={location} value={location} style={{ color: "#000000" }}>
                       {location}
                     </option>
                   ))}
@@ -233,7 +233,7 @@ const CreateJobForm = ({ onClose, setJobs }) => {
               <label htmlFor="jobType">Job Type</label>
               <div className="select-wrapper">
                 <select
-                 style={{ color: "#BCBCBC" }}
+                  style={{ color: formData.jobType ? "#000000" : "#BCBCBC" }}
                   id="jobType"
                   name="jobType"
                   value={formData.jobType}
@@ -244,7 +244,7 @@ const CreateJobForm = ({ onClose, setJobs }) => {
                     Select Job Type
                   </option>
                   {JOB_TYPES.map((type) => (
-                    <option key={type} value={type}>
+                    <option key={type} value={type} style={{ color: "#000000" }}>
                       {type}
                     </option>
                   ))}
