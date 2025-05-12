@@ -21,6 +21,7 @@ const CreateJobForm = ({ onClose, setJobs }) => {
   const [errors, setErrors] = useState({});
 
   const popupRef = useRef(null);
+  const dateInputRef = useRef(null);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -295,19 +296,25 @@ const CreateJobForm = ({ onClose, setJobs }) => {
 
             <div className="form-group">
               <label htmlFor="deadline">Application Deadline</label>
-              <div className="date-input-container">
+              <div className="date-input-container" style={{ position: "relative" }}>
                 <input
-                  style={{ color: "#BCBCBC" }}
                   className="input-wide"
-                  type="date"                  
+                  type="date"
                   id="deadline"
                   name="deadline"
                   value={formData.deadline}
                   onChange={handleChange}
                   required
                   min={new Date().toISOString().split('T')[0]}
+                  ref={dateInputRef}
+                  style={{ color: formData.deadline ? "#000000" : "#BCBCBC" }}
                 />
-                {/* <Calendar className="calendar-icon" style={{ color: "#BCBCBC" }} size={20} /> */}
+                <Calendar
+                  className="calendar-icon"
+                  style={{ color: "#BCBCBC", cursor: "pointer" }}
+                  size={20}
+                  onClick={() => dateInputRef.current && dateInputRef.current.showPicker && dateInputRef.current.showPicker()}
+                />
               </div>
               {errors.deadline && (
                 <span className="error-message">{errors.deadline}</span>

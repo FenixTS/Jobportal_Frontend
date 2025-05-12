@@ -365,3 +365,21 @@ textarea {
 .salary-input-container input:invalid {
   /* border-color: #dc3545; */
 }
+
+/* Hide default calendar icon in Chrome, Safari, Edge, Opera */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
+}
+
+/* Hide default calendar icon in Firefox */
+input[type="date"]::-moz-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
+}
+
+/* Hide default calendar icon in Edge (old) */
+input[type="date"]::-ms-input-placeholder {
+  opacity: 0;
+  display: none;
+}
