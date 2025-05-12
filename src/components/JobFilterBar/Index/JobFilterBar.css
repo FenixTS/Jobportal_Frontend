@@ -32,13 +32,16 @@
 }
 
 .filter-dropdown {
+  appearance: none; /* Remove default arrow */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23686868' stroke-width='2'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  cursor: pointer;
   font-family: 'Satoshi Variable', sans-serif;
   font-size: 16px;
   color: #686868;
-  background: transparent;
   border: none;
   outline: none;
-  cursor: pointer;
   width: 100%;
 }
 

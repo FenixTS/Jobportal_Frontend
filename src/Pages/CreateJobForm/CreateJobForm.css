@@ -171,6 +171,7 @@ textarea:focus {
 
 .select-wrapper {
   position: relative;
+  
 }
 
 .select-wrapper::after {

@@ -31,7 +31,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 500;
   flex-wrap: wrap;
 }
@@ -49,12 +49,13 @@
 
 .create-jobs-btn {
   margin-left: 15px;
-  padding: 8px 20px;
+  padding: 10px 20px;
   border: none;
   border-radius: 20px;
   background: linear-gradient(to bottom, #A128FF, #6100AD);
   color: white;
   font-weight: 400;
+  font-size: 16px;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
@@ -98,7 +99,7 @@
 
   .navbar-menu {
     gap: 8px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .navbar-menu li {
