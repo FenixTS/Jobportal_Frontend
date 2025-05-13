@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import "./JobList.css";
 
 const JobList = ({
@@ -10,7 +11,41 @@ const JobList = ({
   workType,
   salary,
   description,
+  createdAt,
 }) => {
+  const getTimeAgo = (dateString) => {
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffInSeconds = Math.floor((now - date) / 1000);
+    
+    if (diffInSeconds < 60) {
+      return 'Just now';
+    }
+    
+    const diffInMinutes = Math.floor(diffInSeconds / 60);
+    if (diffInMinutes < 60) {
+      return `${diffInMinutes}m ago`;
+    }
+    
+    const diffInHours = Math.floor(diffInMinutes / 60);
+    if (diffInHours < 24) {
+      return `${diffInHours}h ago`;
+    }
+    
+    const diffInDays = Math.floor(diffInHours / 24);
+    if (diffInDays < 30) {
+      return `${diffInDays}d ago`;
+    }
+    
+    const diffInMonths = Math.floor(diffInDays / 30);
+    if (diffInMonths < 12) {
+      return `${diffInMonths}mo ago`;
+    }
+    
+    const diffInYears = Math.floor(diffInMonths / 12);
+    return `${diffInYears}y ago`;
+  };
+
   return (
     <div className="job-card">
       <div className="job-card-header">
@@ -19,7 +54,7 @@ const JobList = ({
             <img src={logo} alt={company} className="company-logo" />
           </div>
         </div>
-        <div className="time-badge">24h Ago</div>
+        <div className="time-badge">{getTimeAgo(createdAt)}</div>
       </div>
 
       <div className="job-card-content">
@@ -115,6 +150,18 @@ const JobList = ({
       </div>
     </div>
   );
+};
+
+JobList.propTypes = {
+  logo: PropTypes.string.isRequired,
+  company: PropTypes.string.isRequired,
+  position: PropTypes.string.isRequired,
+  experience: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  workType: PropTypes.string.isRequired,
+  salary: PropTypes.string.isRequired,
+  description: PropTypes.arrayOf(PropTypes.string).isRequired,
+  createdAt: PropTypes.string.isRequired,
 };
 
 export default JobList;
