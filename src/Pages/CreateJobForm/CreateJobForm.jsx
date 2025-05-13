@@ -104,6 +104,7 @@ const CreateJobForm = ({ onClose, setJobs }) => {
       setJobs(prevJobs => [...prevJobs, data]);
       alert("Job posted successfully! Please check the job list page to see the new job.");
       onClose();
+      window.location.reload(); // Reload the page after successful job posting
     } catch (error) {
       console.error("Error posting job:", error);
       alert(error.message || "Failed to post job. Please try again.");
